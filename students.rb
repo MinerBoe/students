@@ -29,7 +29,7 @@ green_avg = avg_age_green(students, eye_colors, ages)
 puts avg_age_green(students, eye_colors, ages)
 
 def close_to_average(students, eye_colors, ages, avg_age)
-	distance_to_average = 15 # change to the first answer
+	distance_to_average = 1500 # change to the first answer
 	green_student = ""
 	eye_colors.each_with_index do |color, i|
 		distance_to_age = (ages[i] - avg_age).abs
@@ -72,6 +72,7 @@ def blood_type_accepted(students, blood, donor)
 end
 
 def donor_list(students, blood_types, accepted_bloods)
+	# creates a donor list for a student
 	donors = []
 	blood_types.each_with_index do |blood_type, i|
 		if accepted_bloods.include? blood_type
@@ -84,3 +85,35 @@ end
 donor_blood_type = blood_type(students, blood_types,  "Xavier")
 accepted_bloods = blood_type_accepted(students, donor_blood_type, "Xavier")
 puts donor_list(students, blood_types, accepted_bloods)
+
+# Which student(s) has the most blood donors? How many?
+
+def max_donors(students, blood_types)
+	donor_lengths = []
+	
+	students.each_with_index do |student, i|
+		student_blood_type = blood_type(students, blood_types, student)
+		bloods_list = blood_type_accepted(students, student_blood_type, student)
+		student_donor_list = donor_list(students, blood_types, bloods_list)
+		donor_lengths.push(student_donor_list.length)
+
+	end
+	
+	index = 0
+	donor_max = donor_lengths[0]
+	max_donor_list = []
+	donor_lengths.each_with_index do |count, i|
+		if count > donor_max
+			donor_max = count
+			index = i
+		end
+	end
+	donor_lengths.each_with_index do |count, i|
+		if count == donor_max
+			max_donor_list.push(students[i])
+		end
+	end
+	return max_donor_list, donor_max
+end
+
+print max_donors(students, blood_types)
