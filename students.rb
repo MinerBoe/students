@@ -26,7 +26,7 @@ def avg_age_green(students, eye_colors, ages)
 end
 
 green_avg = avg_age_green(students, eye_colors, ages)
-puts avg_age_green(students, eye_colors, ages)
+print "The average age of the green eyed students is #{green_avg}", "\n"
 
 def close_to_average(students, eye_colors, ages, avg_age)
 	distance_to_average = 1500 # change to the first answer
@@ -41,10 +41,10 @@ def close_to_average(students, eye_colors, ages, avg_age)
 		end
 	end
 	return green_student
-
 end 
 
-puts close_to_average(students, eye_colors, ages, green_avg)
+closest_avg_average = close_to_average(students, eye_colors, ages, green_avg)
+print "The green-eyed student that is closest to the average is #{closest_avg_average}", "\n"
 
 def blood_type(students, blood_types, donor)
 	# gets the student's blood type
@@ -82,9 +82,11 @@ def donor_list(students, blood_types, accepted_bloods)
 	return donors
 end
 
-donor_blood_type = blood_type(students, blood_types,  "Xavier")
-accepted_bloods = blood_type_accepted(students, donor_blood_type, "Xavier")
-puts donor_list(students, blood_types, accepted_bloods)
+student_need_blood = "Xavier" 
+donor_blood_type = blood_type(students, blood_types,  student_need_blood)
+accepted_bloods = blood_type_accepted(students, donor_blood_type, student_need_blood)
+student_donor_list = donor_list(students, blood_types, accepted_bloods)
+print "The donor list for #{student_need_blood} is #{student_donor_list}", "\n"
 
 # Which student(s) has the most blood donors? How many?
 
@@ -116,4 +118,5 @@ def max_donors(students, blood_types)
 	return max_donor_list, donor_max
 end
 
-print max_donors(students, blood_types)
+max_donor_list = max_donors(students, blood_types)
+print "The student(s) with the most donors is(are) #{max_donor_list[0]} with #{max_donor_list[1]} donors"
