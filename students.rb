@@ -11,6 +11,18 @@ File.open("student_data.csv").each do |line|
 	blood_types.push(info[3].strip)
 end
 
+def brown_eyes(eye_colors)
+	students_with_brown = 0
+	eye_colors.each do |eye_color|
+		if eye_color == "Brown"
+			students_with_brown += 1
+		end
+	end
+	return students_with_brown
+end
+brown_eyed_students = brown_eyes(eye_colors)
+print "The number of brown eyed students is #{brown_eyed_students}", "\n"
+
 def avg_age_green(students, eye_colors, ages)
 	green_eyes = 0
 	total = 0
